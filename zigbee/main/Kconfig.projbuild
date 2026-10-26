@@ -1,0 +1,16 @@
+menu "Hisense IR AC"
+
+    config HAC_IR_GPIO
+        int "IR LED GPIO"
+        range 0 30
+        default 20
+        help
+            GPIO that drives the IR LED module (RMT TX output).
+
+    config HAC_IR_INVERT
+        bool "Invert IR output"
+        default n
+        help
+            Invert the RMT output level (RMT channel flags.invert_out).
+
+endmenu
