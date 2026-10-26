@@ -47,5 +47,4 @@ Sent with `infrared_send_raw_ext`. The codec (`hisense_codec.c`) matches `flippe
 - V-Swing, H-Swing and Display are toggles. The app keeps no state for them.
 - Turbo in Cool mode is not verified. The app does not change temp there.
 - Timer frames (0x05, 0x1D) are not supported.
-- The app has not been run on a real Flipper or unit yet. Only the build and the host test ran.
 - The state file and the unit can differ if you use the real remote.

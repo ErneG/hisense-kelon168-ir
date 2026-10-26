@@ -1,8 +1,29 @@
 import json
+import os
 import sys
 from pathlib import Path
 
-SRC = Path("/Users/ernestsdane/Documents/GitHub/python-ir-remote-decoder")
+REPO_ROOT = Path(__file__).resolve().parents[3]
+
+
+def find_decoder():
+    env = os.environ.get("IR_DECODER_DIR")
+    candidates = []
+    if env:
+        candidates.append(Path(env).expanduser())
+    candidates.append(REPO_ROOT.parent / "python-ir-remote-decoder")
+    for c in candidates:
+        if (c / "flipper_ir.py").is_file():
+            return c
+    sys.exit(
+        "error: python-ir-remote-decoder not found.\n"
+        "Set IR_DECODER_DIR to its checkout, or clone it next to this repo as\n"
+        f"{REPO_ROOT.parent / 'python-ir-remote-decoder'}.\n"
+        "Tried: " + ", ".join(str(c) for c in candidates)
+    )
+
+
+SRC = find_decoder()
 sys.path.insert(0, str(SRC))
 import flipper_ir as f
 

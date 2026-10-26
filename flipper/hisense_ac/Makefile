@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c11 -O1
 test: tests/test_codec
 	./tests/test_codec
 
-vectors tests/test_vectors.h: tests/gen_vectors.py
+vectors:
 	python3 -I tests/gen_vectors.py tests/test_vectors.h
 
 tests/test_codec: tests/test_codec.c hisense_codec.c hisense_codec.h tests/test_vectors.h

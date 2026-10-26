@@ -3,7 +3,7 @@ from esphome.components import button, climate_ir, time as time_
 import esphome.config_validation as cv
 from esphome.const import CONF_ID, CONF_TIME_ID, ENTITY_CATEGORY_CONFIG
 
-CODEOWNERS = ["@ernestsdane"]
+CODEOWNERS = ["@ErneG"]
 DEPENDENCIES = ["remote_transmitter"]
 AUTO_LOAD = ["climate_ir", "button", "time"]
 
