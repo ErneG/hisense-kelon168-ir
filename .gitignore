@@ -1,0 +1,25 @@
+/.arduino/
+*.elf
+*.bin
+*.map
+*.hex
+*.log
+.DS_Store
+
+# Build and dependency outputs
+build/
+managed_components/
+dependencies.lock
+
+# sdkconfig (sdkconfig.defaults is kept)
+sdkconfig
+sdkconfig.old
+
+# Release, ESPHome, secrets, Python caches, virtualenvs
+dist/
+.esphome/
+esphome/secrets.yaml
+__pycache__/
+*.pyc
+.venv*/
+tools/ir_pin_probe/build/
