@@ -1,0 +1,13 @@
+App(
+    appid="hisense_ac",
+    name="Hisense AC",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="hisense_ac_app",
+    stack_size=4 * 1024,
+    fap_category="Infrared",
+    fap_version="0.1",
+    fap_icon="hisense_ac.png",
+    fap_description="Hisense heat pump remote (KELON168 IR)",
+    sources=["hisense_ac.c", "hisense_codec.c"],
+    fap_icon_assets="images",
+)

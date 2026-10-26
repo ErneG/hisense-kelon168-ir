@@ -1,0 +1,4 @@
+dist/
+.vscode/
+tests/test_codec
+.sconsign.dblite
