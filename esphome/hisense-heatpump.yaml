@@ -1,0 +1,76 @@
+substitutions:
+  name: hisense-heatpump
+  friendly_name: Hisense Heat Pump
+  ir_tx_pin: GPIO20
+  ir_rx_pin: GPIO19
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: ${name}-fallback
+    password: !secret ap_password
+
+external_components:
+  - source:
+      type: local
+      path: components
+    components: [hisense_kelon168]
+
+time:
+  - platform: homeassistant
+    id: ha_time
+
+remote_transmitter:
+  id: ir_tx
+  pin: ${ir_tx_pin}
+  carrier_duty_percent: 50%
+
+# Optional receiver. Needs an IR receiver module (data pin, 3V3, GND).
+# Uncomment it and the receiver_id line below to follow the real remote.
+# remote_receiver:
+#   id: ir_rx
+#   pin:
+#     number: ${ir_rx_pin}
+#     inverted: true
+#     mode:
+#       input: true
+#       pullup: true
+#   idle: 20ms
+#   tolerance: 35%
+#   buffer_size: 4kb
+
+climate:
+  - platform: hisense_kelon168
+    name: ${friendly_name}
+    transmitter_id: ir_tx
+    # receiver_id: ir_rx
+    time_id: ha_time
+    toggle_v_swing_button:
+      name: ${friendly_name} Toggle V swing
+    toggle_h_swing_button:
+      name: ${friendly_name} Toggle H swing
+    toggle_display_button:
+      name: ${friendly_name} Toggle display
+    resend_state_button:
+      name: ${friendly_name} Resend state
